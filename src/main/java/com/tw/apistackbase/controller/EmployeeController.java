@@ -56,9 +56,9 @@ public class EmployeeController {
     @RequestMapping(value= "/employee/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteEmployee(@PathVariable("id") int id){
         boolean isExistEmployee = false;
-        for (int x = 0; x <= employeeList.size(); x++) {
-            if (employeeList.get(x).getId() == id) {
-                employeeList.remove(x);
+        for (int objIndex = 0; objIndex <= employeeList.size(); objIndex++) {
+            if (employeeList.get(objIndex).getId() == id) {
+                employeeList.remove(objIndex);
                 isExistEmployee = true;
             }
         }
