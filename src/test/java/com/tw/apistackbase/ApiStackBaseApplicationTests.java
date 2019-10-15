@@ -11,7 +11,7 @@ public class ApiStackBaseApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		
+
 	}
 
 }
