@@ -49,20 +49,19 @@ public class EmployeeController {
                 NEWLINE + "name: " + employee.getName() +
                 NEWLINE + "age: " + employee.getAge() +
                 NEWLINE + "gender: " + employee.getGender() :
-                "Employee not Exist";
+                "Employee not found";
         return ResponseEntity.ok(msg);
     }
 
     @RequestMapping(value= "/employee/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteEmployee(@PathVariable("id") int id){
-        boolean isExistEmployee = false;
-        for (int objIndex = 0; objIndex <= employeeList.size(); objIndex++) {
-            if (employeeList.get(objIndex).getId() == id) {
-                employeeList.remove(objIndex);
-                isExistEmployee = true;
-            }
-        }
-        String msg = isExistEmployee == true ? "Removed Employee with Employee ID: " + id : "Employee not Exist";
+        Employee employee = employeeList.stream()
+                .filter(emp -> emp.getId() == id)
+                .findFirst()
+                .orElse(null);
+        
+        employeeList.remove(employee);
+        String msg = employee == null ? "Employee not found" : "Deleted Employee ID: " + id;
         return ResponseEntity.ok(msg);
     }
 
